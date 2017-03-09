@@ -7,6 +7,7 @@
     using System.Threading.Tasks;
     using RestSharp;
     using YtsSharpApi.Models;
+    using RestSharp.Authenticators;
 
     public partial class YtsClient
     {
@@ -16,6 +17,16 @@
         public YtsClient()
         {
             _restClient = new RestClient(BaseAddress);
+        }
+
+        public YtsClient(string userName, string passsword)
+            : this(new HttpBasicAuthenticator(userName, passsword))
+        {
+        }
+
+        public YtsClient(HttpBasicAuthenticator Authenticator)
+        {
+            _restClient.Authenticator = Authenticator;
         }
 
         public string GetMovieComment(string movieId)
@@ -37,3 +48,6 @@
 
     }
 }
+
+
+// Note: object model factor http://json2csharp.com/#

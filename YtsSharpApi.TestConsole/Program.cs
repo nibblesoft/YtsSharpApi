@@ -11,9 +11,9 @@ namespace YtsSharpApi.TestConsole
         static void Main(string[] args)
         {
             var ytsClient = new YtsClient();
-            foreach (var item in ytsClient.GetListMovies().data.movies)
+            foreach (var movie in ytsClient.GetListMovies().data.movies)
             {
-                Console.WriteLine(item.title);
+                Console.WriteLine($"Title: {movie.title}, Rating:{movie.rating}");
             }
             Console.ReadLine();
         }
